@@ -1,0 +1,18 @@
+[submodule "CANlib"]
+	path = CANlib
+	url = https://github.com/Duet3D/CANlib.git
+[submodule "DuetWiFiSocketServer"]
+	path = DuetWiFiSocketServer
+	url = https://github.com/Duet3D/DuetWiFiSocketServer.git
+[submodule "RRFLibraries"]
+	path = RRFLibraries
+	url = https://github.com/Duet3D/RRFLibraries.git
+[submodule "CoreNG"]
+	path = CoreNG
+	url = https://github.com/Duet3D/CoreNG.git
+[submodule "FreeRTOS"]
+	path = FreeRTOS
+	url = https://github.com/Duet3D/FreeRTOS.git
+[submodule "RepRapFirmware"]
+	path = RepRapFirmware
+	url = https://github.com/pollenam/RepRapFirmware.git
