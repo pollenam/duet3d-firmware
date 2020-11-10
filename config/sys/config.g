@@ -20,9 +20,9 @@ M586 P1 S0                                  ; disable FTP
 M586 P2 S0                                  ; disable Telnet
 
 ; Drives
-M569 P0.0 S1                                ; physical drive 0.0 goes forwards
-M569 P0.1 S1                                ; physical drive 0.1 goes forwards
-M569 P0.2 S1                                ; physical drive 0.2 goes forwards
+M569 P0.0 S0                                ; physical drive 0.0 goes forwards
+M569 P0.1 S0                                ; physical drive 0.1 goes forwards
+M569 P0.2 S0                                ; physical drive 0.2 goes forwards
 M569 P1.0 S1                                ; physical drive 1.0 goes forwards
 M584 X0.0 Y0.1 Z0.2 E1.0                    ; set drive mapping
 M350 X256 Y256 Z256 E256 I0                 ; configure microstepping without interpolation
@@ -51,19 +51,19 @@ M558 P5 H5 F120 T1200 C"e0stop"              ; set Z probe type to switch and th
 ; Heaters
 ; BED
 M308 S3 Y"rtd-max31865" P"spi.cs0" A"Bed"   ; define Bed temperature sensor
-M950 H0 C"out9" T3 			    ; heater 0 uses the out9 pin, sensor 3
-M307 H0 B0 S1.00    			    ; disable bang-bang mode for the bed heater and set PWM limit
+M950 H0 C"out9" T3 			    			; heater 0 uses the out9 pin, sensor 3
+M307 H0 B0 S1.00    			    		; disable bang-bang mode for the bed heater and set PWM limit
 M143 H0 S120                                ; set temperature limit for heater 0 (bed) to 120C
 M140 H0                                     ; map heated bed to heater 0
 
 ;Extruder
-M308 S1 Y"rtd-max31865" P"1.spi.cs0" A"Ext" ; define E0 temperature sensor.
+M308 S1 Y"rtd-max31865" P"1.spi.cs1" A"Ext" ; define E0 temperature sensor.
 M950 H1 C"1.out6" T1                        ; heater 1 uses the e0_heat pin, sensor 1
 M143 H1 S280                                ; set temperature limit for heater 1 to 280C
 M307 H1 B0 S1.00                            ; disable bang-bang mode for the nozzle heater and set PWM limit
-                                            ; disable bang-bang mode for heater  and set PWM limit
+
 ;NOZZLE / HEAD
-M308 S2 Y"rtd-max31865" P"1.spi.cs1" A"Nozzle" ; define E0 temperature sensor
+M308 S2 Y"rtd-max31865" P"1.spi.cs0" A"Nozzle" ; define E0 temperature sensor
 M950 H2 C"1.out7" T2                           ; heater 2 uses the e1_heat pin, sensor 2
 M307 H2 B0 S1.00                               ; disable bang-bang mode for the nozzle heater and set PWM limit
 M143 H2 S280                                   ; set temperature limit for heater 2 to 280C
@@ -82,12 +82,14 @@ M950 F3 C"1.out5" Q500                      ; create fan 3 on pin 1.out5 and set
 M106 P3 S1 H1:2 T45                         ; set fan 3 value. Thermostatic control is turned on
 
 ; Tools
-M563 P1 S"Extruder" D0 H1:2 F0                 ; define tool & named Extruder, using drive 3, heaters 1/2, and Fan 0
+M563 P1 S"Extruder" D0 H1:2 F0              ; define tool & named Extruder, using drive 3, heaters 1/2, and Fan 0
 G10 P0 X0 Y0 Z0                             ; set tool 0 axis offsets
 G10 P0 R0 S0                                ; set initial tool 0 active and standby temperatures to 0C
 
 M570 H1 P180 S10 ; Soit tolérant aux chauffes trop lentes sur h1 pendant 180 secondes
 M570 H0 P180 S10 ; Soit tolérant aux chauffes trop lentes sur h1 pendant 180 secondes
+
+M950 P0 C"out7"
 
 ; Custom settings are not defined
 M501 ;use config-override.g as well
