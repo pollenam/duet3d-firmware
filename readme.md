@@ -5,15 +5,24 @@
 - Copy duet web control to SD card /www folder
 - ! keep names, or it won't work
 
-## Uploading fw
+## Uploading / Updating fw
 
 ### Good old way
 
-The part with the PI is working for any linux computer. [link](https://duet3d.dozuki.com/Wiki/Getting_Started_With_Duet_3).
+The part with the PI is working for any linux computer. [link](https://duet3d.dozuki.com/Wiki/Getting_Started_With_Duet_3). **This is not the preferred solution, unless your board is bricked and no access to the web server is possible**
 
-### From the web interface
+### From the web interface (This is the prefered method)
 
-Umpload file named correctly.
+#### 1/ Upload all up to date firmware
+
+By uploading the provided .zip file, and accepting popup proposing update.
+You can find it [here](https://github.com/Duet3D/RepRapFirmware/releases)
+
+#### Upload Pollen custom firmware
+
+**Name must be : ** `Duet3Firmware_MB6HC.bin`.
+Note that Pollen custom firmware version must match the one of updated one.
+
 
 ## Install & Compile sources
 
