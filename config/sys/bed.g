@@ -5,16 +5,16 @@
 M561 ; clear any bed transform
 ; Probe the bed at 6 peripheral and 3 halfway points, and perform 6-factor auto compensation
 ; Before running this, you should have set up your Z-probe trigger height to suit your build, in the G31 command in config.g.
-G30 P0 X0 Y149.9 H0 Z-99999
-G30 P1 X129.82 Y74.95 H0 Z-99999
-G30 P2 X129.82 Y-74.95 H0 Z-99999
-G30 P3 X0 Y-149.9 H0 Z-99999
-G30 P4 X-129.82 Y-74.95 H0 Z-99999
-G30 P5 X-129.82 Y74.95 H0 Z-99999
+G30 P0 X0 Y130 H0 Z-99999
+G30 P1 X119.82 Y74.95 H0 Z-99999
+G30 P2 X119.82 Y-74.95 H0 Z-99999
+G30 P3 X0 Y-130 H0 Z-99999
+G30 P4 X-119.82 Y-74.95 H0 Z-99999
+G30 P5 X-119.82 Y74.95 H0 Z-99999
 G30 P6 X0 Y74.9 H0 Z-99999
 G30 P7 X64.87 Y-37.45 H0 Z-99999
 G30 P8 X-64.87 Y-37.45 H0 Z-99999
-G30 P9 X0 Y0 H0 Z-99999 S6
+G30 P9 X0 Y0 H0 Z-99999 S4
 ; Use S-1 for measurements only, without calculations. Use S4 for endstop heights and Z-height only. Use S6 for full 6 factors
 ; If your Z probe has significantly different trigger heights depending on XY position, adjust the H parameters in the G30 commands accordingly. The value of each H parameter should be (trigger height at that XY position) - (trigger height at centre of bed)
 

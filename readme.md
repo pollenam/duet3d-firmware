@@ -52,3 +52,7 @@ Umpload file named correctly.
 - Delta radius = 109 : 30cm au centre, 31.5 à Y=100
 - Delta radius = 300 : 30cm au centre, 34 à Y=80
 
+## Modif douteuses
+
+- G1 : Z inversé
+- G30 : Z inversé
