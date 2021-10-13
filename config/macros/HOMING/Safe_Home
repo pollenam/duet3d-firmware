@@ -1,0 +1,59 @@
+; safehome.g
+; called to home all towers on a delta printer
+; 
+
+; This function is called instead of G28, it has the added functionality to check if the building plate is in a safe position before homing
+; To call it the following command can be used : M98 P"/macros/safehome"
+if move.axes[0].homed && move.axes[1].homed && move.axes[2].homed ; check if the building plate is homed and move it to a safe position if it was
+ G1 X0 Y0 Z100 F1800
+
+G28
+
+;M400
+;M584 P4
+;M913 U30
+;M400 G91                        ; relative positioning
+;;G1 H2 U-22 F600
+;G1 H1 X406 Y406 Z406 U20 F1800 ; move all towers to the high end stopping at the endstops (first pass)
+;;M913 U100
+;;M400
+;G1 H2 X-3 Y-3 Z-3 U-22 F1800    ; go down a few mm
+;;G1 H2 U-22 F600
+;G1 H1 X10 Y10 Z10 F360     ; move all towers up once more (second pass)
+;M913 U100
+;M400
+;G1 H2 U15 F600
+;G90                        ; absolute positioning
+;G92 X0 Y0 Z41.6 U8;Z40.60 U8
+;T0
+;M400
+;M98 P"/macros/HOMING/Piezo_Z0_T1"
+
+
+; G30 X0 Y0 H0 Z-99999 THIS COMMAND REMOVES ANGLE COMPENSATION, DOESN'T WORK
+;;G38.3 P0 X0 Y0 Z0 F800
+; M561 ; clear any bed transform
+;;G92 X0 Y0 Z0 U8;Z40.60 U8
+;;G1 X0 Y0 Z50 
+;G29 S1
+;M584 P3
+;;M400
+;Now we do the Z0 with the Piezo sensor
+;M98 P"/macros/HOMING/Piezo_Z0"
+;G1 X0 Y0 Z50
+;M400
+;T1
+;M201 X100.00 Y100.00 Z100.00 E20.00  
+;;M561
+;G30 X0 Y0 H0 Z-99999
+;G92 X0 Y0 Z4.8 U8
+;M201 X1000.00 Y1000.00 Z1000.00 E20.00  
+;G1 X0 Y0 Z50
+;T0
+;M400
+
+
+
+
+
+

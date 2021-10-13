@@ -1,0 +1,3 @@
+echo move.axes[0].homed, move.axes[1].homed, move.axes[2].homed
+if move.axes[0].homed 
+  G1 X0 Y0 Z100

@@ -1,0 +1,6 @@
+;This macro can be used to fully start the printer and have it ready to print a PLA part
+;G28 ;Does a non-safe homing, use M98 P"/macros/HOMING/Safe_Home" for a safe homing
+M98 P"/macros/HOMING/Safe_Home" ;Does a safe home, which means it will check if the bed is in a non-safe position and move it before doing a homing
+M98 P"/macros/power_on" ;Powers on the 220v SSR
+M98 p"/macros/heat_PLA" ;Writes the PLA temperatures for the extruder and the bed
+T1 ;Selects the extruder so the temperatures are applied correctly
