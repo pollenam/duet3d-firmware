@@ -46,7 +46,7 @@ Note that Pollen custom firmware version must match the one of updated one.
 
 - Full procedure [here](https://duet3d.dozuki.com/Wiki/Calibrating_a_delta_printer).
 - Test calibration sensor with (full description [here](https://duet3d.dozuki.com/Wiki/Test_and_calibrate_the_Z_probe))
-
+- `M666`, `M665` to display new printer model.
 
 
 
