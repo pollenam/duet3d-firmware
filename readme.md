@@ -33,6 +33,22 @@ Note that Pollen custom firmware version must match the one of updated one.
 - git checkout 3.1.0 or stable version when possible/
 - We are building for Duet 6HC, which have an Atmel ATSAME70 proc. One should use SEMAE70 build configuration. Dev branch is working. Since we will use CAN network, it seems we need to use RTOS when possible. Meaning the correct compilation configuration is SAME70_RTOS
 
+## Update RepRapFirmware
+
+- Get all the versions of the packages at https://github.com/Duet3D/RepRapFirmware/wiki/Building-RepRapFirmware
+- For each package : `git checkout <version>` (`git pull` pour être sûr d'avoir une version à jour) (pas hyper fiable)
+- cd RepRapFirmware
+- git checkout upstream/3.3-dev (branch ou tag)
+- git switch -c 3.3-pollen-dev
+- git merge --no-ff 3.2-pollen-dev (dernière branche patchée)
+- Visual Studio Code pour résoudre les conflits
+- git diff --cached (pour vérifier la cohérence des confilts résolus automatiquement)
+- git add <fichiers> (pour les fichiers édités manuellement)
+- git commit (terminer le merge)
+- Compiler avec Eclipse 
+- Récupérer le .bin dans le dossier projet RRF
+- Flash
+
 ## Fw Configuration
 
 - [use this tool](https://configtool.reprapfirmware.org/)

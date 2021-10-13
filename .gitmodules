@@ -16,3 +16,6 @@
 [submodule "CoreN2G"]
 	path = CoreN2G
 	url = https://github.com/Duet3D/CoreN2G.git
+[submodule "CoreNG"]
+	path = CoreNG
+	url = https://github.com/Duet3D/CoreNG.git
