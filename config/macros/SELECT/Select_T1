@@ -1,4 +1,6 @@
 M913 U100
-G1 U0 F600
+G1 U-7 F600 ; max -7
 M913 U100
-;G55
+G54
+if state.status == "processing" ;if the printer is printing, then wait for head temp to be reached, otherwise you don't need to wait for temp in idle state 
+	M116 H2 S5 ;wait head

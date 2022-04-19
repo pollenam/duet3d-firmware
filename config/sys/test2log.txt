@@ -1,0 +1,4 @@
+power up + 00:13:29 Event logging started
+power up + 00:40:45 HTTP client 10.0.1.235 login succeeded
+2019-11-09 18:35:01 Date and time set at power up + 00:40:45
+2019-11-09 18:35:41 Event logging stopped

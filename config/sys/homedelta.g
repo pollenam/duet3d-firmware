@@ -5,24 +5,39 @@
 ; BE CAREFUL, this script is being executed when using G28, but this command cannot check if the building plate is in a safe position before homing
 ; A safe command to use is the following one : M98 P"/macros/safehome"
 ;if move.axes[0].homed && move.axes[1].homed && move.axes[2].homed
+;sensors.endstops[1].triggered
 ;G1 X0 Y0 Z100 F1800 
 M400              				; Wait for past actions to finish
 ;M584 P4
-M913 U30		 			    ; Lower the cable motor's current to 30% of what current was defined in config.g 
-M400 G91          				; Wait for past actions to finish and switch to relative positioning
+M913 U60 V60	 			    ; Lower the cable motor's current to 30% of what current was defined in config.g 
+M400 
+G91          				; Wait for past actions to finish and switch to relative positioning
+
+;SAFE HOMING SECTION
+if sensors.endstops[0].triggered
+	G1 H2 X-10 Y-10 Z-10 F600 
+while sensors.endstops[0].triggered
+	G1 H2 X-10 F1800
+while sensors.endstops[1].triggered
+	G1 H2 Y-10 F1800
+while sensors.endstops[2].triggered
+	G1 H2 Z-10 F1800
+;END OF SAFE HOMING SECTION
+
 ;G1 H2 U-22 F600
-G1 H1 X406 Y406 Z406 U20 F1800  ; move all towers to the high end stopping at the endstops (first pass)
+G1 H1 X406 Y406 Z406 U20 V20 F1800  ; move all towers to the high end stopping at the endstops (first pass)
 ;M913 U100
 ;M400
-G1 H2 X-3 Y-3 Z-3 U-22 F1800    ; go down a few mm and move the cable down
+G1 H2 X-3 Y-3 Z-3 U-30 V-22 F1800    ; go down a few mm and move the cable down
 ;G1 H2 U-22 F600
 G1 H1 X10 Y10 Z10 F360    	    ; move all towers up once more (second pass)
-M913 U100					    ; Raise the cable motor's current to 100% of what current was defined in config.g 
+M913 U100 V100					    ; Raise the cable motor's current to 100% of what current was defined in config.g 
 M400							; Wait for past actions to finish
-G1 H2 U15 F600					; Move the cable up
+G1 H2 U25 V25 F600					; Move the cable up
 G90                             ; Switch to absolute positioning
 T0	; Unselect any tool VERY IMPORTANT! DO NOT MOVE THIS COMMAND! Without this command the calibration fails and the bed will be at an angle
-G92 X0 Y0 Z41.60 U8;Z40.60 U8    ; Set the machine positioning to these coordinates
+G92 X0 Y0 Z42.05 U8 V8;Z42.05 U8 V8;Z40.60 U8    ; Set the machine positioning to these coordinates
+;AJOUTER TOOL OFFSET POUR UTILISER T1 ET T2 EN MEME TEMPS
 ;T0
 M400							; Wait for past actions to finish
 ;M98 P"/macros/HOMING/Piezo_Z0_T1" ;Asks for the automatic Z0 of the T1 extruder

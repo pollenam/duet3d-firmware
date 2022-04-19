@@ -7,7 +7,7 @@
 if move.axes[0].homed && move.axes[1].homed && move.axes[2].homed ; check if the building plate is homed and move it to a safe position if it was
  G1 X0 Y0 Z100 F1800
 
-G28
+;G28
 
 ;M400
 ;M584 P4

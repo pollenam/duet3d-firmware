@@ -1,0 +1,10 @@
+;T1
+
+M190 S60 ;set bed temp and wait
+M141 S60 ;set chamber temp and dont wait (use M191 to wait)
+M104 S175:0:62 
+M109 S175::
+M109 S::62
+G10 P1 S140:160:62 R125:145:62
+M104 S140:0:62
+M140

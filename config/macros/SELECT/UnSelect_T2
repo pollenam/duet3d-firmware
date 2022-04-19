@@ -1,0 +1,5 @@
+G91 
+G1 H2 X-10 Y-10 Z-10 ; get the head out of the way of the print
+G90
+G1 V12 F600
+;G53
