@@ -29,9 +29,13 @@ Note that Pollen custom firmware version must match the one of updated one.
 - Clone this repo
 - git submodule init
 - git submodule update
-- Follow [official build instructions](https://github.com/Duet3D/RepRapFirmware/blob/dev/BuildInstructions.md). You can skip the step where you have to clone all repositories.
+- Follow [official build instructions](https://github.com/Duet3D/RepRapFirmware/wiki/Building-RepRapFirmware). You can skip the step where you have to clone all repositories.
 - git checkout 3.1.0 or stable version when possible/
-- We are building for Duet 6HC, which have an Atmel ATSAME70 proc. One should use SEMAE70 build configuration. Dev branch is working. Since we will use CAN network, it seems we need to use RTOS when possible. Meaning the correct compilation configuration is SAME70_RTOS
+- We are building for Duet 6HC, which have an Atmel ATSAME70 proc. One should use SEMAE70 build configuration. Dev branch is working. Since we will use CAN network, it seems we need to use RTOS when possible. Meaning the correct compilation configuration is SAME70_RTOS (see build instructions for details)
+- [2022-09-28] In CoreN2G I had to:
+  - add `-mfp16-format=ieee` flag to compiler options (in miscanelous)
+  - Add RRFLibraries to GCC Include path
+- In RepRapFirmware, you will have to reset PATH variable (so make and other tools are found), and to set the fullpath of crc32append bin dir into post build commands.
 
 ## Update RepRapFirmware
 
@@ -45,7 +49,7 @@ Note that Pollen custom firmware version must match the one of updated one.
 - git diff --cached (pour vérifier la cohérence des confilts résolus automatiquement)
 - git add <fichiers> (pour les fichiers édités manuellement)
 - git commit (terminer le merge)
-- Compiler avec Eclipse 
+- Compiler avec Eclipse
 - Récupérer le .bin dans le dossier projet RRF
 - Flash
 
